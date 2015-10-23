@@ -14,7 +14,9 @@ namespace twozerofoureight
     {
         Model model;
         Controller controller;
-        protected int sum = 0;
+        public int sum = 0;
+       
+        
 
         public TwoZeroFourEightView()
         {
@@ -89,17 +91,7 @@ namespace twozerofoureight
                     sum += board[i, j];
                 }
             }
-            lblScore.Text = Convert.ToString(sum);
-        }
-        private void btnLeft_Click(object sender, EventArgs e)
-        {
-            controller.ActionPerformed(TwoZeroFourEightController.LEFT);
-          
-        }
 
-        private void btnRight_Click(object sender, EventArgs e)
-        {
-            controller.ActionPerformed(TwoZeroFourEightController.RIGHT);
         }
 
         private void btnUp_Click(object sender, EventArgs e)
@@ -120,6 +112,24 @@ namespace twozerofoureight
         private void label3_Click(object sender, EventArgs e)
         {
             
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            TwoZeroFourEightScoreView newForm = new TwoZeroFourEightScoreView(sum);
+            newForm.Show();
+            this.Hide();
+            
+        }
+
+        private void btnRight_Click(object sender, EventArgs e)
+        {
+            controller.ActionPerformed(TwoZeroFourEightController.RIGHT);
+        }
+
+        private void btnLeft_Click(object sender, EventArgs e)
+        {
+            controller.ActionPerformed(TwoZeroFourEightController.LEFT);
         }
     }
 }
