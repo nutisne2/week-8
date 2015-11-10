@@ -10,13 +10,30 @@ using System.Windows.Forms;
 
 namespace twozerofoureight
 {
-    public partial class TwoZeroFourEightScoreView : Form
+    public partial class TwoZeroFourEightScoreView : Form , View
     {
-     
-        public TwoZeroFourEightScoreView(int passscore)
+        public void Notify(Model m)
         {
-            InitializeComponent();
-            lblScore.Text = Convert.ToString(passscore);
+            UpdateScore(((TwoZeroFourEightModel)m).GetBoard());
+        }
+
+        private void UpdateScore(int[,] board)
+        {
+           int sum = 0;
+            for (int i = 0; i < 4; i++)
+            {
+                for (int j = 0; j < 4; j++)
+                {
+                    sum += board[i, j];
+                    lblScore.Text = Convert.ToString(sum);
+                }
+            }
+
+        }
+
+        public TwoZeroFourEightScoreView()
+        {
+
         }
 
         private void label1_Click(object sender, EventArgs e)

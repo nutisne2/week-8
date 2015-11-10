@@ -15,14 +15,17 @@ namespace twozerofoureight
         Model model;
         Controller controller;
         public int sum = 0;
+        TwoZeroFourEightScoreView show;
        
         
 
         public TwoZeroFourEightView()
         {
             InitializeComponent();
+            show = new TwoZeroFourEightScoreView();
             model = new TwoZeroFourEightModel();
             model.AttachObserver(this);
+            model.AttachObserver(show);
             controller = new TwoZeroFourEightController();
             controller.AddModel(model);
             controller.ActionPerformed(TwoZeroFourEightController.LEFT);
@@ -89,6 +92,7 @@ namespace twozerofoureight
                 for (int j = 0; j < 4; j++)
                 {
                     sum += board[i, j];
+                    showscore.Text = Convert.ToString(sum); 
                 }
             }
 
@@ -116,7 +120,7 @@ namespace twozerofoureight
 
         private void button1_Click(object sender, EventArgs e)
         {
-            TwoZeroFourEightScoreView newForm = new TwoZeroFourEightScoreView(sum);
+            TwoZeroFourEightScoreView newForm = new TwoZeroFourEightScoreView();
             newForm.Show();
             this.Hide();
             
